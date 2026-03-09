@@ -302,6 +302,7 @@
       <button class="secondary" id="restablecerBtn">Restablecer</button>
       <button class="primary" id="copiarResultadoBtn">Copiar resultado</button>
       <button class="success" id="copiarRotuloBtn">Copiar rotulado</button>
+      <button class="success" id="descargarEtiquetaBtn">Descargar etiqueta</button>
     </div>
   </div>
 
@@ -355,6 +356,7 @@
     const restablecerBtn = document.getElementById('restablecerBtn');
     const copiarResultadoBtn = document.getElementById('copiarResultadoBtn');
     const copiarRotuloBtn = document.getElementById('copiarRotuloBtn');
+    const descargarEtiquetaBtn = document.getElementById('descargarEtiquetaBtn');
 
     function formatoInputHoy() {
       const hoy = new Date();
@@ -486,6 +488,56 @@ Responsable: ${responsableValor || '-'}`;
       }
     }
 
+    function generarImagenEtiqueta() {
+      const codigo = limpiarCodigo(codigoMaterial.value);
+      const material = buscarMaterial(codigo);
+      const lote = loteGenerado.value;
+      const responsableValor = responsable.value.trim() || '-';
+      const fechaFabTexto = fabricacionTexto.textContent.replace('Fecha de fabricación: ', '');
+      const vencimientoTexto = fechaVencimientoTexto.textContent;
+
+      if (!material || !lote || vencimientoTexto === '--/--/----') {
+        alert('Completa primero el código y la fecha de fabricación para generar la etiqueta.');
+        return;
+      }
+
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      canvas.width = 900;
+      canvas.height = 520;
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = '#111827';
+      ctx.lineWidth = 4;
+      ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
+
+      ctx.fillStyle = '#111827';
+      ctx.font = 'bold 38px Arial';
+      ctx.fillText('PULPAFRUIT', 40, 60);
+
+      ctx.font = '28px Arial';
+      ctx.fillText(material.nombre, 40, 120);
+
+      ctx.font = 'bold 28px Arial';
+      ctx.fillText(`Código: ${codigo}`, 40, 180);
+      ctx.fillText(`Lote: ${lote}`, 40, 230);
+      ctx.fillText(`Fabricación: ${fechaFabTexto}`, 40, 280);
+      ctx.fillText(`Vence: ${vencimientoTexto}`, 40, 330);
+      ctx.fillText(`Responsable: ${responsableValor}`, 40, 380);
+
+      ctx.font = '22px Arial';
+      ctx.fillStyle = '#4b5563';
+      ctx.fillText('Generado por herramienta interna de rotulado', 40, 450);
+
+      const link = document.createElement('a');
+      link.download = `${lote}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
     function restablecer() {
       codigoMaterial.value = '';
       fechaFabricacion.value = formatoInputHoy();
@@ -512,6 +564,8 @@ Responsable: ${responsableValor || '-'}`;
     copiarRotuloBtn.addEventListener('click', () => {
       copiarTexto(textoRotulado.value, copiarRotuloBtn);
     });
+
+    descargarEtiquetaBtn.addEventListener('click', generarImagenEtiqueta);
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

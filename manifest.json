@@ -7,7 +7,7 @@
   "theme_color": "#111827",
   "icons": [
     {
-      "src": "pulpafruit-icon",
+      "src": "pulpafruit-icon.png",
       "sizes": "192x192",
       "type": "image/png"
     }

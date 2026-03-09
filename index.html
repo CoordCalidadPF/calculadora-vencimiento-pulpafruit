@@ -190,8 +190,6 @@
 
     button:hover { opacity: 0.95; }
 
-    .hidden { display: none; }
-
     @media (max-width: 640px) {
       .grid {
         grid-template-columns: 1fr;
@@ -240,7 +238,7 @@
 
       <div class="group">
         <label for="lote">Lote</label>
-        <input type="text" id="lote" placeholder="Ej. 250309A" />
+        <input type="text" id="lote" placeholder="Ej. 03092026A" />
       </div>
 
       <div class="group">
@@ -275,7 +273,7 @@
       <div class="group">
         <label for="codigoLoteAutomatico">Lote sugerido por fecha</label>
         <input type="text" id="codigoLoteAutomatico" readonly />
-        <div class="small-note">formatoLote(fechaLoteValor)</div>
+        <div class="small-note">Formato sugerido: MMDDAAAA</div>
       </div>
     </div>
 
@@ -325,29 +323,25 @@
     const restablecerBtn = document.getElementById('restablecerBtn');
     const copiarBtn = document.getElementById('copiarBtn');
     const copiarEtiquetaBtn = document.getElementById('copiarEtiquetaBtn');
-function formatoLote(fechaStr) {
-  if (!fechaStr) return '';
-  const fecha = new Date(`${fechaStr}T12:00:00`);
-  if (Number.isNaN(fecha.getTime())) return '';
 
-  const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-  const dia = String(fecha.getDate()).padStart(2, '0');
-  const año = fecha.getFullYear();
-
-  return `${mes}${dia}${año}`;
-}
+    function formatoInputHoy() {
+      const hoy = new Date();
+      const año = hoy.getFullYear();
+      const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+      const dia = String(hoy.getDate()).padStart(2, '0');
+      return `${año}-${mes}-${dia}`;
     }
 
-   function formatoLote(fechaStr) {
-  if (!fechaStr) return '';
-  const fecha = new Date(`${fechaStr}T12:00:00`);
-  if (Number.isNaN(fecha.getTime())) return '';
+    function formatoLote(fechaStr) {
+      if (!fechaStr) return '';
+      const fecha = new Date(`${fechaStr}T12:00:00`);
+      if (Number.isNaN(fecha.getTime())) return '';
 
-  const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-  const dia = String(fecha.getDate()).padStart(2, '0');
-  const año = fecha.getFullYear();
+      const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+      const dia = String(fecha.getDate()).padStart(2, '0');
+      const año = fecha.getFullYear();
 
-  return `${mes}${dia}${año}`;
+      return `${mes}${dia}${año}`;
     }
 
     function obtenerDiasProducto() {
@@ -380,7 +374,7 @@ function formatoLote(fechaStr) {
       const fechaLoteValor = fechaLote.value || fechaBase;
       const dias = Number(vidaUtil.value || 0);
 
-      codigoLoteAutomatico.value = formatoAAMMDD(fechaLoteValor);
+      codigoLoteAutomatico.value = formatoLote(fechaLoteValor);
 
       if (!fechaBase || !dias || dias <= 0) {
         productoTexto.textContent = `Producto: ${productoValor || '-'}`;

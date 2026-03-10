@@ -1127,8 +1127,7 @@ window.MATERIALES = {
   "610097": { "nombre": "BEBIDA LÁCTEA (UHT) ULTRA ALTA TEMPERATURA, LARGA VIDA A BASE DE YOGURT SEMIDESCREMADO CON DULCE SABORES: MORA MARCA SMOOVE", "vidaUtil": 60, "unidadVidaUtil": "dias" },
   "610098": { "nombre": "BEBIDA LÁCTEA (UHT) ULTRA ALTA TEMPERATURA, LARGA VIDA A BASE DE YOGURT SEMIDESCREMADO CON DULCE SABORES: DURAZNO MARCA SMOOVE", "vidaUtil": 60, "unidadVidaUtil": "dias" },
   "610099": { "nombre": "BEBIDA LÁCTEA (UHT) ULTRA ALTA TEMPERATURA, LARGA VIDA A BASE DE YOGURT SEMIDESCREMADO CON DULCE SABORES: FRESA MARCA SMOOVE", "vidaUtil": 60, "unidadVidaUtil": "dias" },
-  "610100": { "nombre": "BEBIDA CON LECHE ENTERA Y AVENA, ULTRA ALTA TEMPERATURA UAT (UHT)
-MARCA: LA VITTA", "vidaUtil": 120, "unidadVidaUtil": "dias" },
+  "610100": { "nombre": "BEBIDA CON LECHE ENTERA Y AVENA, ULTRA ALTA TEMPERATURA UAT (UHT)MARCA: LA VITTA", "vidaUtil": 120, "unidadVidaUtil": "dias" },
   "610901": { "nombre": "LECHE SABORIZADA FRESA 200ml  - DELITIONICOS", "vidaUtil": 90, "unidadVidaUtil": "dias" },
   "610902": { "nombre": "LECHE SABORIZADA VAINILLA 200ml  - DELITIONICOS", "vidaUtil": 90, "unidadVidaUtil": "dias" },
   "610903": { "nombre": "AVENA UHT SIN HIERRO POR 200 ml  - DELITIONICOS", "vidaUtil": 90, "unidadVidaUtil": "dias" },

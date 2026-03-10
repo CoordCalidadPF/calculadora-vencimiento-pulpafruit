@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pulpafruit-vencimiento-v5';
+const CACHE_NAME = 'pulpafruit-vencimiento-v7';
 
 const APP_SHELL = [
   './',
